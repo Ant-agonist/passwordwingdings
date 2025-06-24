@@ -58,22 +58,29 @@
     <button onclick="checkPassword()">Valider</button>
     <p id="message"></p>
   </div>
-
   <script>
-    const validPasswords = ["k9f2r6", "qi7t4p", "a5js3o"];
+  const passwordImages = {
+    "k9f2r6": "images/chimie.jpg",
+    "qi7t4p": "images/biologie.jpg",
+    "a5js3o": "images/geologie.jpg"
+  };
 
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
-      const message = document.getElementById("message");
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value.trim();
+    const message = document.getElementById("message");
+    const image = document.getElementById("image");
 
-      if (validPasswords.includes(input)) {
-        message.textContent = "🎉 Félicitations ! Vous avez trouvé le bon mot de passe !";
-        message.style.color = "green";
-      } else {
-        message.textContent = "❌ Mot de passe incorrect. Essayez encore.";
-        message.style.color = "red";
-      }
+    if (passwordImages[input]) {
+      message.textContent = "🎉 Félicitations ! Vous avez trouvé le bon mot de passe !";
+      message.style.color = "green";
+      image.src = passwordImages[input];
+      image.style.display = "block";
+    } else {
+      message.textContent = "❌ Mot de passe incorrect. Essayez encore.";
+      message.style.color = "red";
+      image.style.display = "none";
     }
-  </script>
+  }
+</script>
 </body>
 </html>
