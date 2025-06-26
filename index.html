@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entrez le mot de passe</title>
   <style>
     body {
@@ -11,33 +12,44 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 1em;
     }
 
     .container {
       text-align: center;
       background: white;
       padding: 2em;
-      border-radius: 10px;
+      border-radius: 15px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1em;
     }
 
     input[type="password"] {
-      padding: 0.5em;
-      font-size: 1em;
+      padding: 1em;
+      font-size: 1.2em;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
+      width: 100%;
+      box-sizing: border-box;
       margin-bottom: 1em;
     }
 
     button {
-      padding: 0.5em 1em;
-      font-size: 1em;
+      padding: 1em 2em;
+      font-size: 1.2em;
       background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      width: 100%;
     }
 
     button:hover {
@@ -46,7 +58,35 @@
 
     #message {
       margin-top: 1em;
+      font-size: 1.1em;
       font-weight: bold;
+    }
+
+    #image {
+      margin-top: 1.5em;
+      max-width: 100%;
+      height: auto;
+      display: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      input[type="password"], button {
+        font-size: 1.4em;
+      }
+
+      button {
+        width: auto;
+      }
+
+      #message {
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
@@ -57,31 +97,35 @@
     <br>
     <button onclick="checkPassword()">Valider</button>
     <p id="message"></p>
-    <img id="image" src="" alt="Image secrète" style="margin-top: 1em; max-width: 300px; display: none;">
+    <img id="image" src="" alt="Image secrète">
   </div>
   <script>
-  const passwordImages = {
-    "k9f2r6": "images/Capture site web indice.png",
-    "qi7t4p": "images/Capture site web indice.png",
-    "a5js3o": "images/Capture site web indice.png"
-  };
+    const passwordImages = {
+      "k9f2r6": "images/Capture site web indice.png",
+      "qi7t4p": "images/Capture site web indice.png",
+      "a5js3o": "images/Capture site web indice.png"
+    };
 
-  function checkPassword() {
-    const input = document.getElementById("passwordInput").value.trim();
-    const message = document.getElementById("message");
-    const image = document.getElementById("image");
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      const message = document.getElementById("message");
+      const image = document.getElementById("image");
 
-    if (passwordImages[input]) {
-      message.textContent = "🎉 Félicitations ! Vous avez trouvé le bon mot de passe ! Voici le prochain indice ...";
-      message.style.color = "green";
-      image.src = passwordImages[input];
-      image.style.display = "block";
-    } else {
-      message.textContent = "❌ Mot de passe incorrect. Essayez encore.";
-      message.style.color = "red";
-      image.style.display = "none";
+      if (passwordImages[input]) {
+        message.textContent = "🎉 Félicitations ! Vous avez trouvé le bon mot de passe ! Voici le prochain indice ...";
+        message.style.color = "green";
+        image.src = passwordImages[input];
+        image.style.display = "block";
+      } else {
+        message.textContent = "❌ Mot de passe incorrect. Essayez encore.";
+        message.style.color = "red";
+        image.style.display = "none";
+      }
     }
-  }
+  </script>
+</body>
+</html>
+
 </script>
 </body>
 </html>
